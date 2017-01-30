@@ -9,3 +9,4 @@ gem 'colorize', '~> 0.8.1'
 
 # ASCII Art Gem
 gem 'artii', '~> 2.1.2'
+
