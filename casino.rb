@@ -3,9 +3,24 @@ require 'colorize'
 require 'artii'
 # require_relative 'player' #copy paste
 class HighLow
+  attr_accessor :name, :bet
 
-  def initialize
-    puts "Welcome to High/Low #{player.name}"
+  def initialize(player)
+    puts "Welcome to High/Low"
+    @player = player
+    binding.pry
+    puts "Hi #{@player.name}"
+    first_card
+  end
+
+  def first_card
+    @cards = [1,2,3,4,5]
+    puts 'Here is your card'
+    puts @cards.sample
+    puts 'Will the next card be higher or lower:'
+    puts '1: higher'
+    puts '2: lower'
+    @player_input = gets.chomp
   end
 end
 
@@ -63,7 +78,7 @@ class Casino
         # Slots.new(player)
         # menu
       when 3
-        HighLow.new
+        HighLow.new(player)
         # menu
       when 4
         puts 'Thanks for playing!!'
