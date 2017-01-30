@@ -92,7 +92,7 @@ class Casino
   attr_accessor :player
 
   def initialize
-    puts'Welcome To The Casino!'.colorize(:blue)
+    puts'Welcome To The Casino!'
     @player = Player.new  #instance variable
     puts "What game do you want to play #{player.name}?"
     menu
