@@ -1,5 +1,6 @@
-#game players bank rolls 
+##game players bank rolls
 #
+## require_relative 'slots' this method does not seem to work for file linking
 
 require 'pry'
 require 'colorize'
@@ -113,8 +114,7 @@ class Casino
         player.info
         menu
       when 2
-        # Slots.new(player)
-        # menu
+        #Slots.new # not correct method for having user go to this class
       when 3
         HighLow.new(player)
         # menu
