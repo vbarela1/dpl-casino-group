@@ -25,5 +25,3 @@ puts @card2
   end
   binding.pry
 end
-
-cards
