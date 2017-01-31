@@ -1,0 +1,5 @@
+def slots_game
+  @slots = ['Cherry', 'Banana', 'Orange', 'Apple', 'Grape', 'Bar']
+  puts @slots.sample { |result| if result = [0] puts 'You win'}
+end
+end
