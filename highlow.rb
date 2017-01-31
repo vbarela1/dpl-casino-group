@@ -1,12 +1,21 @@
+require 'artii'
 require_relative 'wallet'
 
 class HighLow
-  attr_accessor :name, :bet
 
-  def initialize(player)
+  def initialize(player, casino)
+    @casino = casino
     @player = player
-    puts "Welcome to High/Low #{player.name}!"
-    cards
+    a = Artii::Base.new
+    puts a.asciify("Welcome to High/Low #{player.name}!")
+    puts 'To go back to the Casino type 1'
+    puts 'To play HighLow type 2'
+    user_input = gets.chomp.to_i
+      if user_input == 1
+        @casino.menu
+      else user_input == 2
+        cards
+      end
   end
 
   def cards
@@ -15,9 +24,7 @@ class HighLow
     if(@player.wallet.amount <= 0)
       puts 'You are out of money'
       puts 'Go to the ATM'
-      puts 'how much money do you want to withdraw?'
-      withdraw = gets.chomp.to_i
-      @player.wallet = Wallet.new(withdraw)
+      @player.wallet.atm
     end
   puts 'Here is your first card:'
   @card1 = 1 + rand(10)

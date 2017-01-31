@@ -1,8 +1,12 @@
 # require_relative 'casino' this method of file linking does not seem to work
+require 'artii'
 
 class Slots
-  def initialize
-    puts '**** Welcome to Slots ****'
+  def initialize(player, casino)
+    @casino = casino
+    @player = player
+    a = Artii::Base.new
+    puts a.asciify("Welcome to Slots #{player.name}!")
     puts 'Game and betting instructions:'
     puts '1 cherry = win'
     puts 'If you win, your bet is doubled'
@@ -11,10 +15,9 @@ class Slots
     @user_input_slots_startup = gets.chomp
       if @user_input_slots_startup == 'yes'
         slots_bet
-      end
-      if @user_input_slots_startup == 'no'
+      else @user_input_slots_startup == 'no'
         'Maybe another time, you are being taken back to the main menu'
-         exit(0)#Casino.menu this method was tried and did not work for linking back to casino
+         @casino.menu
       end
   end
 
@@ -34,18 +37,40 @@ class Slots
     puts 'And the slot machine result is:'
     puts ''
     if @slots.sample == 'Cherry'
-      puts '** cherry **' #find ruby gem that inserts cherry symbols
+      a = Artii::Base.new
+      puts a.asciify('Cherry!')
       puts 'WIN!!!!!!!'
       puts "You just won #{@user_input_slots_bet * 2}"
+      @player.wallet.amount = @player.wallet.amount + @user_input_slots_bet * 2
+      puts "You have this much left #{@player.wallet.amount}"
+      puts 'To continue playing type 1, to go back to casino type 2'
+      user_input = gets.chomp.to_i
+      if user_input == 1
+        slots_bet
+      else user_input == 2
+        @casino.menu
+      end
     else
-      puts @slots.sample[0..5]
       puts 'Lose'
-      # goes back to user slots menu
+      @player.wallet.amount = @player.wallet.amount - @user_input_slots_bet
+      puts "You have this much left #{@player.wallet.amount}"
+      if(@player.wallet.amount <= 0)
+        puts 'You are out of money'
+        puts 'Go to the ATM'
+        @player.wallet.atm
+      end
+      puts 'To continue playing type 1, to go back to casino type 2'
+      user_input = gets.chomp.to_i
+      if user_input == 1
+        slots_bet
+      else user_input == 2
+        @casino.menu
+      end
     end
+    slots_bet
   end
 end
 
-Slots.new
 #want to show a welcome to slots sign
 #eventually throw in a cool sound when you enter slots
 #eventually throw in a neat sign that appears with the name slots

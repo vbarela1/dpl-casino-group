@@ -7,6 +7,8 @@ require 'pry'
 require 'colorize'
 require 'artii'
 require_relative 'player'
+require_relative 'highlow'
+require_relative 'slots'
 
 class Casino
   #TO DO: HANDLE MULTI PLAYERS
@@ -14,7 +16,8 @@ class Casino
   attr_accessor :player
 
   def initialize
-    puts'Welcome To The Casino!'
+    a = Artii::Base.new
+    puts a.asciify('Welcome To The Casino!')
     @player = Player.new  #instance variable
     puts "What game do you want to play #{player.name}?"
     menu
@@ -33,9 +36,9 @@ class Casino
         menu
       when 2
         #Slots.new # not correct method for having user go to this class
-        Slots.new(player)
+        Slots.new(player, self)
       when 3
-        HighLow.new(player)
+        HighLow.new(player, self)
       when 4
         puts 'Thanks for playing!!'
         exit(0)
@@ -47,4 +50,4 @@ class Casino
   end
 end
 
-Casino.new
+@casino = Casino.new

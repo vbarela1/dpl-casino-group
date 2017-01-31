@@ -1,8 +1,14 @@
 class Wallet
-  attr_accessor :amount 
+  attr_accessor :amount
 
   def initialize(amount)
-    #randomly give an amount 
-    @amount = amount 
+    @amount = amount
  end
-end 
+
+ def atm
+     puts 'How much money do you want to withdraw?'
+     withdraw = gets.chomp.to_i
+     @amount = withdraw
+     puts "Your new balance is #{@amount}"
+   end
+end
