@@ -22,13 +22,13 @@ end
 
 @slots = Slots.new(@player)
 
-#  if s1==s2 && s2==s3
-#     3
-#   elsif s1==s2 || s2==s3 || s1==s3
-#     2
-#   else
-#     0
-#   end
+ if s1==s2 && s2==s3
+    3
+  elsif s1==s2 || s2==s3 || s1==s3
+    2
+  else
+    0
+  end
 
 
 

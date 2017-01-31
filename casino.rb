@@ -14,9 +14,6 @@ class Casino
     @player = Player.new  #instance variable
     puts "What game do you want to play #{player.name}?"
     menu
-  #show casino game manu
-  #let player choose a game
-  #initialize the new game passing the player as a parameter
   end
 
   def menu
@@ -32,13 +29,11 @@ class Casino
         menu
       when 2
         Slots.new(player)
-        # menu
       when 3
         HighLow.new(player)
-        # menu
       when 4
         puts 'Thanks for playing!!'
-        exit
+        exit(0)
       else
         puts 'Invalid Input!'
         menu
