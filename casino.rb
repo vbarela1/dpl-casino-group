@@ -9,6 +9,7 @@ require 'artii'
 require_relative 'player'
 require_relative 'highlow'
 require_relative 'slots'
+require_relative 'blackjack'
 
 class Casino
   #TO DO: HANDLE MULTI PLAYERS
@@ -24,11 +25,12 @@ class Casino
   end
 
   def menu
-    puts '*** Casino Menu ***'
-    puts '1) Player Info'
-    puts '2) Slots'
-    puts '3) High / Low'
-    puts '4) Exit'
+    puts '*** Casino Menu ***'.colorize(:color => :black, :background => :red)
+    puts '1) Player Info'.colorize(:color => :black, :background => :red)
+    puts '2) Slots'.colorize(:color => :black, :background => :red)
+    puts '3) High / Low'.colorize(:color => :black, :background => :red)
+    puts '4) Blackjack'.colorize(:color => :black, :background => :red)
+    puts '5) Exit'.colorize(:color => :black, :background => :red)
     choice = gets.to_i
     case choice
       when 1
@@ -40,6 +42,8 @@ class Casino
       when 3
         HighLow.new(player, self)
       when 4
+        Blackjack.new(player, self)
+      when 5
         puts 'Thanks for playing!!'
         exit(0)
       else

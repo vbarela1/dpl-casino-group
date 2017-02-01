@@ -30,10 +30,13 @@ class HighLow
   @card1 = 1 + rand(10)
   puts @card1
   puts 'Will the next card be higher or lower?'
+  puts 'To go back to the Casino type 1'
   @user_bet = gets.chomp
   @card2 = 1 + rand(10)
   puts @card2
     case
+    when @user_bet == '1'
+      @casino.menu
     when @card2 > @card1 && @user_bet == 'higher'
       win
       @player.wallet.amount = @player.wallet.amount + 1
